@@ -41,10 +41,10 @@ public class HelpLabelFrame extends JFrame {
      * @exception IllegalArgumentException – if width or height is zero.
      *
      */
-	private Image rightBackground = new ImageIcon(SignUpForm.class.getResource("res/rightPanel.png")).getImage()
+	private Image rightBackground = new ImageIcon(SignUpForm.class.getResource("resources/rightPanel.png")).getImage()
 			.getScaledInstance(500, 500, Image.SCALE_SMOOTH);
 	
-	private Image leftLogo = new ImageIcon(SignUpForm.class.getResource("res/Logo.png")).getImage()
+	private Image leftLogo = new ImageIcon(SignUpForm.class.getResource("resources/Logo.png")).getImage()
 			.getScaledInstance(90, 90, Image.SCALE_SMOOTH);
 	
 	/**

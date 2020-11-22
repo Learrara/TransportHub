@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
@@ -14,6 +13,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 import java.awt.Color;
+import java.awt.Container;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -26,6 +27,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -47,11 +49,6 @@ import java.awt.event.ActionEvent;
  *
  */
 public class LogInForm extends JFrame {
-	
-	//information used to connect to the database
-	final String url = "jdbc:mysql:///testdb";					//replace url from testdb to actual database
-    final String user = "root";															
-    final String password = "xXx69bruh420xXx";
 
     // mainPanel
     private JPanel contentPane;
@@ -77,14 +74,14 @@ public class LogInForm extends JFrame {
      * @exception IllegalArgumentException – if width or height is zero.
      * @exceptipn NullPointerException-  If name is null
      */
-    private Image logoOfLogIn = new ImageIcon(SignUpForm.class.getResource("res/Logo.png")).getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
-    private Image managerLogo = new ImageIcon(SignUpForm.class.getResource("res/round.png")).getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-    private Image loginBackground = new ImageIcon(SignUpForm.class.getResource("res/rightPanel.png")).getImage().getScaledInstance(950, 750, Image.SCALE_SMOOTH);
-    private Image showPasswordIcon = new ImageIcon(SignUpForm.class.getResource("res/showPasswordIcon.png")).getImage().getScaledInstance(26, 26, Image.SCALE_SMOOTH);
-    private Image hidePasswordIcon = new ImageIcon(SignUpForm.class.getResource("res/HidePasswordIcon.png")).getImage().getScaledInstance(26, 26, Image.SCALE_SMOOTH);
-    private Image logInButton = new ImageIcon(SignUpForm.class.getResource("res/btnSignUp.png")).getImage().getScaledInstance(150, 80, Image.SCALE_SMOOTH);
-    private Image cancelButton = new ImageIcon(SignUpForm.class.getResource("res/btnLoginSwitch.png")).getImage().getScaledInstance(150, 80, Image.SCALE_SMOOTH);
-    private Image transportHubLogo = new ImageIcon(SignUpForm.class.getResource("res/Logo.png")).getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+    private Image logoOfLogIn = new ImageIcon(LogInForm.class.getResource("resources/Logo.png")).getImage().getScaledInstance(32, 32, Image.SCALE_SMOOTH);
+    private Image managerLogo = new ImageIcon(LogInForm.class.getResource("resources/round.png")).getImage().getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+    private Image loginBackground = new ImageIcon(LogInForm.class.getResource("resources/rightPanel.png")).getImage().getScaledInstance(950, 750, Image.SCALE_SMOOTH);
+    private Image showPasswordIcon = new ImageIcon(LogInForm.class.getResource("resources/showConfirmPasswordIcon.png")).getImage().getScaledInstance(26, 26, Image.SCALE_SMOOTH);
+    private Image hidePasswordIcon = new ImageIcon(LogInForm.class.getResource("resources/HidePasswordIcon.png")).getImage().getScaledInstance(26, 26, Image.SCALE_SMOOTH);
+    private Image logInButton = new ImageIcon(LogInForm.class.getResource("resources/btnsignUp.png")).getImage().getScaledInstance(150, 80, Image.SCALE_SMOOTH);
+    private Image cancelButton = new ImageIcon(LogInForm.class.getResource("resources/btnLoginSwitch.png")).getImage().getScaledInstance(150, 80, Image.SCALE_SMOOTH);
+    private Image transportHubLogo = new ImageIcon(LogInForm.class.getResource("resources/Logo.png")).getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
 
     private JTextField usernameTextField;
     private JPasswordField paswwordTextField;
@@ -107,6 +104,8 @@ public class LogInForm extends JFrame {
     private MyDocumentListenerForPassword myDocumentListenerForPassword;
     private MyMouseListenerForCloseLabel myMouseListenerForCloseLabel;
     private MyActionListenerForLogin myActionListenerForLogin;
+    private JLabel lblClickHereTo;
+    private JLabel backgroundLabel;
 
 
    /**
@@ -118,7 +117,6 @@ public class LogInForm extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	System.out.println("Test");
                     LogInForm frame = new LogInForm();
                     frame.setVisible(true);
                 } catch (Exception e) {
@@ -252,15 +250,12 @@ public class LogInForm extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // displaying the SignUpForm
-                SignUpForm signUpForm = new SignUpForm();
-
-                /**
-                 * we dispose the log in button because we personally believed
-                 * that it may become to annoying to user to have many frame that will prompt
-                 * in the screen
+               SignUpForm signUpForm = new SignUpForm();
+               /**
+              * we dispose the log in button because we personally believed
+                * that it may become to annoying to user to have many frame that will prompt                 * in the screen
                  */
-                dispose();
-                // setting the frame to be visible
+               dispose();                // setting the frame to be visible
                 signUpForm.setVisible(true);
                 // setting the frame in the center
                 signUpForm.setLocationRelativeTo(null);
@@ -388,7 +383,7 @@ public class LogInForm extends JFrame {
         leftLogoLabel.setVerticalAlignment(SwingConstants.TOP);
         leftLogoLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         leftLogoLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        leftLogoLabel.setBounds(77, 202, 250, 264);
+        leftLogoLabel.setBounds(72, 188, 250, 264);
         leftLogoLabel.setIcon(new ImageIcon(transportHubLogo));
         contentPane.add(leftLogoLabel);
 
@@ -448,12 +443,31 @@ public class LogInForm extends JFrame {
 
         contentPane.add(showPasswordLabel);
         
-        JLabel backgroundLogoForLogin = new JLabel("");
-        backgroundLogoForLogin.setHorizontalTextPosition(SwingConstants.CENTER);
-        backgroundLogoForLogin.setHorizontalAlignment(SwingConstants.CENTER);
-        backgroundLogoForLogin.setBounds(0, 52, 850, 528);
-        backgroundLogoForLogin.setIcon(new ImageIcon(loginBackground));
-        contentPane.add(backgroundLogoForLogin);
+        lblClickHereTo = new JLabel("Click here to go Track Page");
+        lblClickHereTo.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+                try {
+                   TrackPage trackpage = new TrackPage();
+                   trackpage.frame.setVisible(true);
+
+                } catch (Exception ye) {
+                    ye.printStackTrace();
+                }
+            }
+        	
+        });
+        lblClickHereTo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblClickHereTo.setForeground(Color.WHITE);
+        lblClickHereTo.setFont(new Font("Berlin Sans FB", Font.PLAIN, 18));
+        lblClickHereTo.setBounds(62, 494, 262, 18);
+        contentPane.add(lblClickHereTo);
+        
+        backgroundLabel = new JLabel("");
+        backgroundLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        backgroundLabel.setBounds(0, 50, 850, 530);
+        backgroundLabel.setIcon(new ImageIcon(loginBackground));
+        contentPane.add(backgroundLabel);
     }
 
 
@@ -593,7 +607,11 @@ public class LogInForm extends JFrame {
                     "Are you sure you want to close this application?", "Confirmation", JOptionPane.YES_NO_OPTION);
 
             if (userChoices == JOptionPane.YES_OPTION) {
-                System.exit(0);
+            	Container frame = closeButtonLabel.getParent();
+	            do 
+	                frame = frame.getParent(); 
+	            while (!(frame instanceof JFrame));                                      
+	            ((JFrame) frame).dispose();
             } else {
                 LogInForm.this.setVisible(true);
             }
@@ -683,7 +701,7 @@ public class LogInForm extends JFrame {
                  */
                 String queryInTheDatabase = "SELECT username, password FROM manager_account";
 
-                boolean flag = false;
+                boolean wrongPassword = false;
 
                 /**
                  * Getting a connection to to the given database URL
@@ -699,7 +717,8 @@ public class LogInForm extends JFrame {
                  * @exception SQLException – if a database access error occurs or the url
                  *                                is null
                  */
-                Connection connection = DriverManager.getConnection(url, user, password);
+                Connection connection = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/transporthubfinalproject", "root", "Rebolos143#");
 
                 /**
                  * Object for sending parameterized SQL statements to the database.
@@ -741,52 +760,36 @@ public class LogInForm extends JFrame {
                        to input a masterkey password that was declared within the program
                       */
                     if (e.getSource() == buttonLogIn && databaseUsername.equals(usernameInput) && databasePassword.equals(passwordInput)) {
+                    	wrongPassword= true;
+                         
+                        try {
+                           MasterKeyFrame window = new MasterKeyFrame();
+                           
+                            window.setVisible(true);
+                          
 
-                        //checking if the username and passwowrd if match
-                        flag = true;
-
-                        /**
-                         * Letting user to input from JOptionPane.showInputDialog
-                         * @param parentComponent -the parent Component for the dialog message – the Object to display
-                         * @param initialSelectionValue -the value used to initialize the input field
-                         */
-                        message = JOptionPane.showInputDialog(null, "Please enter the password!", JOptionPane.OK_OPTION);
-                        String password = "a1E7m7r0g1n-3ce###";
-                        /*
-                          Checking if the password that was input from the JOptionPaneInputDialog
-                          if match then the manager could proceed with the main screen
-                         */
-                        if (password.equals(message)) {
-                            JOptionPane.showMessageDialog(null, "You logged in successfully");
-                            // Instantiating the main screen
-                            try {
-                                AddUpdateOrderPage window = new AddUpdateOrderPage();
-                                window.frame.setVisible(true);
-
-                            } catch (Exception ye) {
-                                ye.printStackTrace();
-                            }
+                        } catch (Exception ye) {
+                            ye.printStackTrace();
                         }
-  
                     }
+                      
+                  }
 
-                }
+       
+                
 
                 /** Waiting for this to happen when it is automatically closed.
                  * @exception SQLException - if a database access error occurs
                  */
                 rs.close();
 
-               /*
-                checking if the flag is false then displaying the user that the username and password
-                was not match in the database
-
-                */
-                if (!flag) {
-                    usernameTextField.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255, 0, 0)));
-                    paswwordTextField.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255, 0, 0)));
-                    JOptionPane.showMessageDialog(null, "Please Check Username and Password ");
-                }
+             
+                   if(!wrongPassword) {
+                	   usernameTextField.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255, 0, 0)));
+                       paswwordTextField.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255, 0, 0)));
+                       JOptionPane.showMessageDialog(null, "Please Check Username and Password ");
+                   }
+              
 
 
                 //Catching the unhandle exception
@@ -794,12 +797,12 @@ public class LogInForm extends JFrame {
                 error.printStackTrace();
             }
 
-
         }
-
-
     }
 }
+        
 
+
+    
 
 

@@ -51,9 +51,9 @@ public class FAQFrame extends JFrame {
      * @exception IllegalArgumentException – if width or height is zero.
      * @exception NullPointerException-  If name is null
      */
-    private Image logoOfCompany = new ImageIcon(SignUpForm.class.getResource("res/logo.png")).getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+    private Image logoOfCompany = new ImageIcon(SignUpForm.class.getResource("resources/logo.png")).getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH);
 
-    private Image backgroundLogo = new ImageIcon(SignUpForm.class.getResource("res/rightPanel.png")).getImage().getScaledInstance(850, 800, Image.SCALE_SMOOTH);
+    private Image backgroundLogo = new ImageIcon(SignUpForm.class.getResource("resources/rightPanel.png")).getImage().getScaledInstance(850, 800, Image.SCALE_SMOOTH);
 
     
     /**

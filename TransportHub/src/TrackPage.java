@@ -1,5 +1,4 @@
 
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -37,14 +36,15 @@ import java.awt.event.KeyEvent;
 /**
  * This class contains code for the Track Order Page
  * 
- * @author John Tex Lear O. Rara
+ * @author Roberto A Rebolos Jr, Romel Alcantara and John Tex Lear Ortaliz Rara
+ * @since 2020 -19 -11
  */
 
 public class TrackPage {
 
-    final String url = "jdbc:mysql:///testdb?useSSL=false";					//replace url from testdb to actual database
+    final String url = "jdbc:mysql:///transporthubfinalproject?useSSL=false";					//replace url from testdb to actual database
     final String user = "root";															
-    final String password = "xXx69bruh420xXx";
+    final String password = "Rebolos143#";
     
 	JFrame frame;
 	private JTextField textField;
@@ -612,54 +612,6 @@ public class TrackPage {
 		panel.setBounds(144, 300, -101, 25);
 		body.add(panel);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(51, 204, 51));
-		panel_1.setBounds(824, 33, 145, 31);
-		body.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel_6 = new JLabel("Create Account");
-		lblNewLabel_6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			        EventQueue.invokeLater(new Runnable() {
-			            public void run() {
-			                try {
-			                    SignUpForm frame = new SignUpForm();
-			                    frame.setVisible(true);
-			                } catch (Exception e) {
-			                    e.printStackTrace();
-			                }
-			            }
-			        });
-			    
-			}
-		});
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblNewLabel_6.setBounds(10, 10, 82, 13);
-		panel_1.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_6_1 = new JLabel("Log-in");
-		lblNewLabel_6_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			        EventQueue.invokeLater(new Runnable() {
-			            public void run() {
-			                try {
-			                    LogInForm frame = new LogInForm();
-			                    frame.setVisible(true);
-			                } catch (Exception e) {
-			                    e.printStackTrace();
-			                }
-			            }
-			        });
-			    
-			}
-		});
-		lblNewLabel_6_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblNewLabel_6_1.setBounds(100, 10, 82, 13);
-		panel_1.add(lblNewLabel_6_1);
-		
 	}
 	
 	//////////////////////////////////////////////////////////////////////////// Program frame code ends here
@@ -726,7 +678,7 @@ public class TrackPage {
 		
 		ArrayList<String> date = new ArrayList<String>();
 	    try {
-	    	Class.forName("com.mysql.jdbc.Driver");
+	    	
 	 Connection connection = DriverManager.getConnection(url, user, password);//Establishing connection
 	 System.out.println("Connected With the database successfully");
 	 //Using SQL SELECT Query
@@ -766,7 +718,7 @@ public class TrackPage {
 		
 		ArrayList<String> location = new ArrayList<String>();
 	    try {
-	    	Class.forName("com.mysql.jdbc.Driver");
+	    	
 	 Connection connection = DriverManager.getConnection(url, user, password);//Establishing connection
 	 System.out.println("Connected With the database successfully");
 	 //Using SQL SELECT Query
@@ -806,7 +758,7 @@ public class TrackPage {
 	public String retrieveitem(int i) throws Exception {
 		 String itemlist = "itemlist initial value/ if this appears then something went wrong - terribly wrong";
 	    try {
-	    	Class.forName("com.mysql.jdbc.Driver");
+	    	
 	 Connection connection = DriverManager.getConnection(url, user, password);//Establishing connection
 	 System.out.println("Connected With the database successfully");
 	 //Using SQL SELECT Query

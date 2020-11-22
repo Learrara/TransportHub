@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -39,12 +38,12 @@ import com.sun.jdi.connect.spi.Connection;
  */
 public class SignUpForm extends JFrame {
 
-	final String url = "jdbc:mysql:///testdb";					//replace url from testdb to actual database
-    final String user = "root";															
-    final String password = "xXx69bruh420xXx";
-    
     private JPanel contentPane;
 
+    //information used to connect to the database
+    final String url = "jdbc:mysql:///transporthubfinalproject?useSSL=false";					//replace url from testdb to actual database
+    final String user = "root";															
+    final String password = "Rebolos143#";
     
     /*These are all our JTextField Components
      * and also our JPasswordField
@@ -165,31 +164,31 @@ public class SignUpForm extends JFrame {
      * @exception IllegalArgumentException – if width or height is zero.
      *
      */
-    private Image logoOfFrame = new ImageIcon(SignUpForm.class.getResource("res/Logo.png")).getImage()
+    private Image logoOfFrame = new ImageIcon(SignUpForm.class.getResource("resources/Logo.png")).getImage()
             .getScaledInstance(32, 32, Image.SCALE_SMOOTH);
-    private Image imageLogoFOrCheck = new ImageIcon(SignUpForm.class.getResource("res/checkIcon.png")).getImage()
+    private Image imageLogoFOrCheck = new ImageIcon(SignUpForm.class.getResource("resources/checkIcon.png")).getImage()
             .getScaledInstance(16, 16, Image.SCALE_SMOOTH);
-    private Image rightBackground = new ImageIcon(SignUpForm.class.getResource("res/rightPanel.png")).getImage()
+    private Image rightBackground = new ImageIcon(SignUpForm.class.getResource("resources/rightPanel.png")).getImage()
             .getScaledInstance(1200, 950, Image.SCALE_SMOOTH);
-    private Image leftLogo = new ImageIcon(SignUpForm.class.getResource("res/Logo.png")).getImage()
+    private Image leftLogo = new ImageIcon(SignUpForm.class.getResource("resources/Logo.png")).getImage()
             .getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-    private Image wrongIcon = new ImageIcon(SignUpForm.class.getResource("res/Close-icon.png")).getImage()
+    private Image wrongIcon = new ImageIcon(SignUpForm.class.getResource("resources/Close-icon.png")).getImage()
             .getScaledInstance(16, 16, Image.SCALE_SMOOTH);
-    private Image transportHubLogo = new ImageIcon(SignUpForm.class.getResource("res/Logo.png")).getImage()
+    private Image transportHubLogo = new ImageIcon(SignUpForm.class.getResource("resources/Logo.png")).getImage()
             .getScaledInstance(300, 300, Image.SCALE_SMOOTH);
-    private Image showPasswordIcon = new ImageIcon(SignUpForm.class.getResource("res/showPasswordIcon.png")).getImage()
+    private Image showPasswordIcon = new ImageIcon(SignUpForm.class.getResource("resources/showPasswordIcon.png")).getImage()
             .getScaledInstance(26, 26, Image.SCALE_SMOOTH);
-    private Image hidePasswordIcon = new ImageIcon(SignUpForm.class.getResource("res/HidePasswordIcon.png")).getImage()
+    private Image hidePasswordIcon = new ImageIcon(SignUpForm.class.getResource("resources/HidePasswordIcon.png")).getImage()
             .getScaledInstance(26, 26, Image.SCALE_SMOOTH);
-    private Image signUpButtonIcon = new ImageIcon(SignUpForm.class.getResource("res/btnSignUp.png")).getImage()
+    private Image signUpButtonIcon = new ImageIcon(SignUpForm.class.getResource("resources/btnSignUp.png")).getImage()
             .getScaledInstance(150, 80, Image.SCALE_SMOOTH);
-    private Image logInButtonicon = new ImageIcon(SignUpForm.class.getResource("res/btnLoginSwitch.png")).getImage()
+    private Image logInButtonicon = new ImageIcon(SignUpForm.class.getResource("resources/btnLoginSwitch.png")).getImage()
             .getScaledInstance(150, 80, Image.SCALE_SMOOTH);
     private Image showConfirmPasswordIcon = new ImageIcon(
-            SignUpForm.class.getResource("res/showConfirmPasswordIcon.png")).getImage().getScaledInstance(26, 26,
+            SignUpForm.class.getResource("resources/showConfirmPasswordIcon.png")).getImage().getScaledInstance(26, 26,
             Image.SCALE_SMOOTH);
     private Image hideConfirmPasswordIcon = new ImageIcon(
-            SignUpForm.class.getResource("res/confirmPasswordHideIcon.png")).getImage().getScaledInstance(26, 26,
+            SignUpForm.class.getResource("resources/confirmPasswordHideIcon.png")).getImage().getScaledInstance(26, 26,
             Image.SCALE_SMOOTH);
 
     /*
@@ -456,11 +455,15 @@ public class SignUpForm extends JFrame {
 //				if(JOptionPane.showConfirmDialog(null,"Are you sure you want to close this application?", "Confirmation", JOptionPane.YES_NO_CANCEL_OPTION) == 0);
 
                 int userChoices = JOptionPane.showConfirmDialog(null,
-                        "Are you sure youw want to close this application?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                        "Are you sure you want to close this application?", "Confirmation", JOptionPane.YES_NO_OPTION);
                 
                 //If user will select Yes The frame will be exit
                 if (userChoices == JOptionPane.YES_OPTION) {
-                    System.exit(0);
+                	Container frame = closeButtonLabel.getParent();
+    	            do 
+    	                frame = frame.getParent(); 
+    	            while (!(frame instanceof JFrame));                                      
+    	            ((JFrame) frame).dispose();
                 } else {
                 	//otherwise the frame will be visible
                     SignUpForm.this.setVisible(true);
@@ -786,7 +789,7 @@ public class SignUpForm extends JFrame {
          */
         @Override
         public void insertUpdate(DocumentEvent e) {
-            checkingIfInformationComplete();
+           checkingIfInformationComplete();
 
         }
 
@@ -811,7 +814,7 @@ public class SignUpForm extends JFrame {
          */
         @Override
         public void changedUpdate(DocumentEvent e) {
-            checkingIfInformationComplete();
+           checkingIfInformationComplete();
         }
 
         /*
@@ -1083,7 +1086,7 @@ public class SignUpForm extends JFrame {
             *Displaying a feedback on the confirmpassword so that easily perceived by the user
             * that the password didn't match with the firstpassword length
             */
-            if (firstPassword.length <= 7) {
+            if (confirmPassword.length <= 7) {
                 confirmPasswordField.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(255, 0, 0)));
 
             }
@@ -2825,7 +2828,7 @@ public class SignUpForm extends JFrame {
 
                     }
                 }
-                // Catching all Exception taht could disrupt the system
+                // Catching all Exception that could disrupt the system
             } catch (Exception error) {
                 determineTheDuplicates.setText("Username is already taken input a unique username!");
                 determineTheDuplicates.setForeground(Color.red);
