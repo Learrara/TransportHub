@@ -49,7 +49,7 @@ import java.awt.event.ActionEvent;
 
 public class AddUpdateOrderPage {
 
-    final String url = "jdbc:mysql:///testdb?useSSL=false";					//replace url from testdb to actual database
+    final String url = "jdbc:mysql:///testdb";					//replace url from testdb to actual database
     final String user = "root";
     final String password = "xXx69bruh420xXx";
     
