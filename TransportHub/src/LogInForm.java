@@ -49,7 +49,7 @@ import java.awt.event.ActionEvent;
 public class LogInForm extends JFrame {
 	
 	//information used to connect to the database
-	final String url = "jdbc:mysql:///testdb?useSSL=false";					//replace url from testdb to actual database
+	final String url = "jdbc:mysql:///testdb";					//replace url from testdb to actual database
     final String user = "root";															
     final String password = "xXx69bruh420xXx";
 
@@ -118,6 +118,7 @@ public class LogInForm extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                	System.out.println("Test");
                     LogInForm frame = new LogInForm();
                     frame.setVisible(true);
                 } catch (Exception e) {
